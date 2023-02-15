@@ -22,6 +22,9 @@ class AuthController extends Controller
         ]);
 
         $check = User::where('email',$request->email)->first();
+        if (!$check) {
+            return redirect('/login')->with('error','Email or Password are wrong');
+        }
         if ($check->role_id == 1) {
             if(Auth::attempt($request->only('email','password'))){
                 return redirect('admin/dashboard');

@@ -7,9 +7,7 @@ use App\Http\Controllers\ConcertController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\TransactionController;
-use App\Http\Controllers\VerifyTransactiontController;
-use App\Models\Transaction;
-use App\Models\VerifyTransaction;
+use App\Http\Controllers\VerifyTransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,6 +41,12 @@ Route::group(['prefix' => 'admin','middleware' => ['check-role:1']], function() 
     route::post('concert/{id}',[ConcertController::class,'update'])->name('admin.concert.update');
     route::delete('concert/{id}',[ConcertController::class,'destroy'])->name('admin.concert.delete');
 
+    route::get('customer',[CustomerController::class,'index'])->name('admin.customer');
+    route::get('customer/{id}',[CustomerController::class,'show'])->name('admin.customer.detail');
+    route::post('customer',[CustomerController::class,'store'])->name('admin.customer.create');
+    route::post('customer/{id}',[CustomerController::class,'update'])->name('admin.customer.update');
+    route::delete('customer/{id}',[CustomerController::class,'destroy'])->name('admin.customer.delete');
+
 
     route::get('band-playing',[BandPlayingController::class,'index'])->name('admin.band-playing');
     route::get('band-playing/{id}',[BandPlayingController::class,'show'])->name('admin.band-playing.detail');
@@ -64,16 +68,17 @@ Route::group(['prefix' => 'admin','middleware' => ['check-role:1']], function() 
     route::post('transaction/{id}',[TransactionController::class,'update'])->name('admin.transaction.update');
 
 
-    route::get('verify-transaction',[VerifyTransaction::class,'index'])->name('admin.verify-transaction');
-    route::get('verify-transaction/{id}',[VerifyTransaction::class,'show'])->name('admin.verify-transaction.detail');
-    route::post('verify-transaction',[VerifyTransaction::class,'store'])->name('admin.verify-transaction.create');
-    route::post('verify-transaction/{id}',[VerifyTransaction::class,'update'])->name('admin.verify-transaction.update');
+    route::get('verify-transaction',[VerifyTransactionController::class,'index'])->name('admin.verify-transaction');
+    route::get('verify-transaction/{id}',[VerifyTransactionController::class,'show'])->name('admin.verify-transaction.detail');
+    route::post('verify-transaction',[VerifyTransactionController::class,'store'])->name('admin.verify-transaction.create');
+    route::post('verify-transaction/{id}',[VerifyTransactionController::class,'update'])->name('admin.verify-transaction.update');
 
 
     route::get('ticket',[TicketController::class,'index'])->name('admin.ticket');
     route::get('ticket/{id}',[TicketController::class,'show'])->name('admin.ticket.detail');
     route::post('ticket',[TicketController::class,'store'])->name('admin.ticket.create');
     route::post('ticket/{id}',[TicketController::class,'update'])->name('admin.ticket.update');
+
 
 
 });
@@ -85,7 +90,7 @@ Route::group(['middleware' => ['check-role:2']], function() {
     route::post('order/{id}',[TransactionController::class,'storeOrder'])->name('order.store');
 
     route::get('invoice/{id}',[TransactionController::class,'invoice'])->name('invoice');
-    route::post('invoice/{id}',[VerifyTransactiontController::class,'store'])->name('verify.payment');
+    route::post('invoice/{id}',[VerifyTransactionController::class,'store'])->name('verify.payment');
 
     route::get('check',[TicketController::class,'index'])->name('check-in');
     route::post('check',[TicketController::class,'index'])->name('check');

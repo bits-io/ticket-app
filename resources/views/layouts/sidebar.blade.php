@@ -40,7 +40,7 @@
                     <li><a href="{{ route('admin.ticket') }}">Ticket</a></li>
                 </ul>
             </li>
-            <li class="nav-label">Report</li>
+            {{-- <li class="nav-label">Report</li>
             <li>
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                     <i class="icon-note menu-icon"></i><span class="nav-text">Report</span>
@@ -50,7 +50,7 @@
                     <li><a href="{{ route('admin.report.ticket') }}">Ticket</a></li>
                     <li><a href="{{ route('admin.report.transaction') }}">Transaction</a></li>
                 </ul>
-            </li>
+            </li> --}}
         </ul>
     </div>
 </div>

@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use App\Models\VerifyTransaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class VerifyTransactiontController extends Controller
+class VerifyTransactionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -48,7 +49,12 @@ class VerifyTransactiontController extends Controller
             'image'=>$imagePath,
             'status'=>'pending'
         ]);
-        return view('invoice', $id);
+        $data['transaction'] = $transaction;
+        $data['data'] = DB::table('transaction')
+                        ->join('customers', 'transaction.customer_id', '=', 'customers.id')
+                        ->join('concerts', 'transaction.concert_id', '=', 'concerts.id')
+                        ->first();
+        return view('app.customer.invoice', $data);
     }
 
     /**
