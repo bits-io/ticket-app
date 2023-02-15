@@ -61,7 +61,7 @@
                                     <li class="list-group-item">Concert : {{$transaction->concert_id}}</li>
                                     <li class="list-group-item">Customer Name : {{$transaction->customer_id}}</li>
                                     <li class="list-group-item">Total Order : {{$transaction->amount}}</li>
-                                    <li class="list-group-item">Status : <strong>{{$transaction->status}}</strong></li>
+                                    <li class="list-group-item"><span class="label label-primary">Status : <strong>{{$transaction->status}}</strong></span></li>
                                 </ul>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                                     <li class="list-group-item">Gopay : +628123123123</li>
                                     <li class="list-group-item">BNI : 3122341000101</li>
                                     @if($transaction)
-                                        <li class="list-group-item">Status : {{$verify->status}}</li>
+                                        <li class="list-group-item"><span class="label label-primary">Status : {{$verify->status}}</span></li>
                                     @else
                                         <form action="{{route('verify.payment', $transaction->order_code)}}" method="post" enctype="multipart/form-data">
                                             @csrf
