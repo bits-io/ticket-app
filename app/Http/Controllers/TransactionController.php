@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Concert;
 use App\Models\Customer;
 use App\Models\Transaction;
+use App\Models\VerifyTransaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -105,11 +106,10 @@ class TransactionController extends Controller
 
     public function showOrder($id){
         $data['data'] = Concert::FindOrFail($id);
-        $data['id_concert'] = $id;
-        return view('app.customer/order', $data);
+        return view('app.customer.order', $data);
     }
 
-    public function storeOrder(Request $request ,$id)
+    public function storeOrder(Request $request)
     {
         DB::beginTransaction();
         try {
@@ -128,19 +128,19 @@ class TransactionController extends Controller
                 'phone' => $request->phone,
                 'address' => $request->address,
             ]);
-            $concert = Concert::FindOrFail($id);
+            $concert = Concert::FindOrFail($request->concert_id);
             $transaction = Transaction::create([
                 'customer_id'=>$customer->id,
-                'concert_id'=>$id,
+                'concert_id'=>$request->concert_id,
                 'amount'=> $concert->price,
                 'status'=>'pending',
                 'order_code'=>Str::random(12),
             ]);
-            $data['order_code'] = $transaction->order_code;
+            $data['transaction'] = $transaction;
 
 
             DB::commit();
-            return redirect("invoice", $data)->with('success', 'Pendaftaran Berhasil');
+            return view("app.customer.invoice", $data)->with('success', 'Pendaftaran Berhasil');
 
         } catch (\Throwable $e) {
             DB::rollback();
@@ -151,10 +151,13 @@ class TransactionController extends Controller
     public function invoice($id)
     {
         $data['transaction'] = Transaction::where('order_code',$id)->first();
+        $tr = Transaction::where('order_code',$id)->first();
         $data['data'] = DB::table('transaction')
                         ->join('customers', 'transaction.customer_id', '=', 'customers.id')
                         ->join('concerts', 'transaction.concert_id', '=', 'concerts.id')
                         ->first();
+        $data['verify'] = VerifyTransaction::where('transaction_id', $tr->id)->first();
+
         return view('app.customer.invoice', $data);
     }
 

@@ -73,11 +73,16 @@
                                 <ul class="list-group">
                                     <li class="list-group-item">Gopay : +628123123123</li>
                                     <li class="list-group-item">BNI : 3122341000101</li>
-                                    <form action="{{route('verify.payment', $transaction->order_code)}}" method="post" enctype="multipart/form-data">
-                                        @csrf
-                                        <input type="file" name="image" class="form-control" required>
-                                        <button class="btn btn-primary" type="submit">Verify</button>
-                                    </form>
+                                    @if($transaction)
+                                        <li class="list-group-item">Status : {{$verify->status}}</li>
+                                    @else
+                                        <form action="{{route('verify.payment', $transaction->order_code)}}" method="post" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="file" name="image" class="form-control" required>
+                                            <button class="btn btn-primary" type="submit">Verify</button>
+                                        </form>
+                                    @endif
+
                                 </ul>
                             </div>
                         </div>

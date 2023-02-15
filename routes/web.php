@@ -87,7 +87,7 @@ Route::group(['middleware' => ['check-role:2']], function() {
 
     route::get('home',[AuthController::class,'home'])->name('home');
     route::get('order/{id}',[TransactionController::class,'showOrder'])->name('order.show');
-    route::post('order/{id}',[TransactionController::class,'storeOrder'])->name('order.store');
+    route::post('order',[TransactionController::class,'storeOrder'])->name('order.store');
 
     route::get('invoice/{id}',[TransactionController::class,'invoice'])->name('invoice');
     route::post('invoice/{id}',[VerifyTransactionController::class,'store'])->name('verify.payment');

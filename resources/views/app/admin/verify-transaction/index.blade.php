@@ -59,7 +59,7 @@
                                     <h4 class="card-title">Data Table</h4>
                                 </div>
                                 <div class="header-right">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAdd"><i class="fa fa-plus"></i>Add</button>
+                                    {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAdd"><i class="fa fa-plus"></i>Add</button> --}}
                                 </div>
                                 <div class="table-responsive">
                                     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
@@ -68,22 +68,21 @@
                                                 <table class="table table-striped table-bordered zero-configuration dataTable" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
                                                     <thead>
                                                         <tr role="row">
-                                                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 246.067px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Band Name</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 385.917px;" aria-label="Position: activate to sort column ascending">Address</th>
+                                                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 246.067px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Customer Name</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 385.917px;" aria-label="Position: activate to sort column ascending">Order Code</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 385.917px;" aria-label="Position: activate to sort column ascending">Image</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 385.917px;" aria-label="Position: activate to sort column ascending">Status</th>
                                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 169.717px;" aria-label="Start date: activate to sort column ascending">Aksi</th>
                                                     </thead>
                                                     <tbody>
                                                     @foreach ($data as $d)
                                                         <tr role="row" class="odd">
-                                                            <td class="sorting_1">{{ $d->name }}</td>
-                                                            <td>{{ $d->address }}</td>
+                                                            <td class="sorting_1">{{ $d->customer_id }}</td>
+                                                            <td class="sorting_1">{{ $d->transaction_id }}</td>
+                                                            <td>{{ $d->status }}</td>
+                                                            <td>{{ $d->image }}</td>
                                                             <td class="inline d-block">
-                                                                <form action="{{ route('admin.band.delete', $d->id) }}" method="post">
-                                                                    <a href="{{ route('admin.band.detail', $d->id) }}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalEdit"><i class="fa fa-edit"></i></a>
-                                                                    @method('DELETE')
-                                                                    @csrf
-                                                                    <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
-                                                                </form>
+                                                                <a href="{{ route('admin.verify-transaction.detail', $d->id) }}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalEdit"><i class="fa fa-edit"></i></a>
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -102,7 +101,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form class="mt-5 mb-5 login-input" method="POST" action="{{ route('admin.band.create') }}">
+                                                        <form class="mt-5 mb-5 login-input" method="POST" action="{{ route('admin.verify-transaction.create') }}">
                                                             @csrf
                                                             <div class="form-group">
                                                                 <label for="">Name</label>

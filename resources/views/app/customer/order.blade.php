@@ -53,8 +53,9 @@
             <div class="container-fluid mt-3">
                 <div class="row">
                     <div class="card col-md-6">
-                        <form class="mt-5 mb-5 login-input" method="POST" action="{{ route('order.store', $id_concert) }}">
+                        <form class="mt-5 mb-5 login-input" method="POST" action="{{ route('order.store') }}">
                             @csrf
+                            <input type="hidden" class="form-control" value="{{$data->id}}" name="concert_id" required>
                             <div class="form-group">
                                 <label for="">NIK</label>
                                 <input type="number" class="form-control"  placeholder="Enter NIK" name="nik" required>
