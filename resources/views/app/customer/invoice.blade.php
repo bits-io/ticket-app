@@ -73,7 +73,9 @@
                                 <ul class="list-group">
                                     <li class="list-group-item">Gopay : +628123123123</li>
                                     <li class="list-group-item">BNI : 3122341000101</li>
-                                    @if($transaction)
+
+
+                                    @if((!empty($verify)))
                                         <li class="list-group-item"><span class="label label-primary">Status : {{$verify->status}}</span></li>
                                     @else
                                         <form action="{{route('verify.payment', $transaction->order_code)}}" method="post" enctype="multipart/form-data">
@@ -82,6 +84,8 @@
                                             <button class="btn btn-primary" type="submit">Verify</button>
                                         </form>
                                     @endif
+
+
 
                                 </ul>
                             </div>

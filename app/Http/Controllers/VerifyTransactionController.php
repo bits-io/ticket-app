@@ -43,7 +43,7 @@ class VerifyTransactionController extends Controller
         $imagePath = 'images/verify/' . $imageName;
 
         $transaction = Transaction::where('order_code', $id)->first();
-        VerifyTransaction::create([
+        $data['verify'] = VerifyTransaction::create([
             'customer_id'=>$transaction->customer_id,
             'transaction_id'=>$transaction->id,
             'image'=>$imagePath,

@@ -139,6 +139,7 @@ class TransactionController extends Controller
             $data['transaction'] = $transaction;
 
 
+
             DB::commit();
             return view("app.customer.invoice", $data)->with('success', 'Pendaftaran Berhasil');
 

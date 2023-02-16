@@ -31,7 +31,7 @@ route::get('login',[AuthController::class,'login'])->name('login');
 route::post('login',[AuthController::class,'loginAction'])->name('login.post');
 route::get('logout',[AuthController::class,'logout'])->name('logout');
 
-Route::group(['prefix' => 'admin','middleware' => ['check-role:1']], function() {
+Route::group(['prefix' => 'admin','middleware' => ['auth','check-role:1']], function() {
 
     route::get('dashboard',[AuthController::class,'dashboard'])->name('dashboard');
 
@@ -83,7 +83,7 @@ Route::group(['prefix' => 'admin','middleware' => ['check-role:1']], function() 
 
 });
 
-Route::group(['middleware' => ['check-role:2']], function() {
+Route::group(['middleware' => ['auth','check-role:2']], function() {
 
     route::get('home',[AuthController::class,'home'])->name('home');
     route::get('order/{id}',[TransactionController::class,'showOrder'])->name('order.show');
