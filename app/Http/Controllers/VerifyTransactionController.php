@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ticket;
 use App\Models\Transaction;
 use App\Models\VerifyTransaction;
 use Illuminate\Http\Request;
@@ -92,10 +93,34 @@ class VerifyTransactionController extends Controller
         $request->validate([
             'status' => 'required',
         ]);
-        VerifyTransaction::FindOrFail($id)->update([
-            'status'=>$request->status,
-        ]);
-        return redirect('admin/verify-transaction');
+
+        DB::beginTransaction();
+        try {
+            VerifyTransaction::FindOrFail($id)->update([
+                'status'=>$request->status,
+            ]);
+            $ver = VerifyTransaction::where('id', $id)->first();
+            $trans = Transaction::where('id', $ver->transaction_id)->first();
+
+            do {
+                $random = random_int(1000000000, 9999999999);
+            } while (Ticket::where('ticket_code', $random)->exists());
+
+            Ticket::create([
+                'ticket_code' => $random,
+                'customer_id' => $ver->customer_id,
+                'concert_id' => $trans->concert_id,
+                'transaction_id' =>$ver->transaction_id,
+                'status' => 'not_yet'
+            ]);
+
+            DB::commit();
+            return redirect('admin/verify-transaction');
+        } catch (\Throwable $e) {
+            DB::rollback();
+            throw $e;
+        }
+
     }
 
     /**
