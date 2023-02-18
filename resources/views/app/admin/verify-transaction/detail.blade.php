@@ -58,12 +58,24 @@
                                 <form class="mt-5 mb-5 login-input" method="POST" action="{{ route('admin.verify-transaction.update', $data->id) }}">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="">Name</label>
-                                        <input type="text" class="form-control"  value="{{$data->name}}" name="name" required>
+                                        <label for="">Customer Id</label>
+                                        <input type="text" class="form-control "  value="{{$data->customer_id}}" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Address</label>
-                                        <input type="text" class="form-control" value="{{$data->address}}" name="address" required>
+                                        <label for="">Transaction Id</label>
+                                        <input type="text" class="form-control" value="{{$data->transaction_id}}"  required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Image</label>
+                                        <img src="{{ asset($data->image) }}" height="100" alt="" srcset="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Status</label>
+                                        <select class="form-control" name="status" id="">
+                                            <option value="{{$data->status}}">{{$data->status}}</option>
+                                            <option value="accept">Accept</option>
+                                            <option value="reject">Reject</option>
+                                        </select>
                                     </div>
 
                                     <div class="form-group justify-content-end">

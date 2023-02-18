@@ -39,7 +39,7 @@ class VerifyTransactionController extends Controller
     public function store(Request $request, $id)
     {
         $imageName = time().'.'.$request->image->extension();
-        $uploadedImage = $request->image->move(public_path('images/concert'), $imageName);
+        $uploadedImage = $request->image->move(public_path('images/verify'), $imageName);
         $imagePath = 'images/verify/' . $imageName;
 
         $transaction = Transaction::where('order_code', $id)->first();
@@ -90,12 +90,10 @@ class VerifyTransactionController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
-            'address' => 'required',
+            'status' => 'required',
         ]);
         VerifyTransaction::FindOrFail($id)->update([
-            'name'=>$request->name,
-            'address'=>$request->address
+            'status'=>$request->status,
         ]);
         return redirect('admin/verify-transaction');
     }
