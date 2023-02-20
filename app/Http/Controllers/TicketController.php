@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class TicketController extends Controller
@@ -22,6 +24,13 @@ class TicketController extends Controller
                         ->select('tickets.*', 'customers.full_name', 'concerts.name', 'transaction.order_code')
                         ->get();
         return view('app.admin.ticket.index', $data);
+    }
+
+    public function customerIndex()
+    {
+        $customer = Customer::where('user_id', Auth::user()->id )->first();
+        $data['data'] = Ticket::where('customer_id', $customer->id);
+        return view('app.customer.ticket.index', $data);
     }
 
     /**

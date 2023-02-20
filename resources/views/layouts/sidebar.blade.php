@@ -62,8 +62,8 @@
                     <i class="icon-ecommerce-ticket menu-icon"></i><span class="nav-text">My Ticket</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="{{ route('admin.transaction') }}">My Transaction</a></li>
-                    <li><a href="{{ route('admin.ticket') }}">My Ticket</a></li>
+                    <li><a href="{{ route('customer.transaction') }}">My Transaction</a></li>
+                    <li><a href="{{ route('customer.ticket') }}">My Ticket</a></li>
                 </ul>
             </li>
             @endif

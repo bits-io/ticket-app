@@ -90,6 +90,9 @@ Route::group(['middleware' => ['auth','check-role:2']], function() {
     route::get('invoice/{id}',[TransactionController::class,'invoice'])->name('invoice');
     route::post('invoice/{id}',[VerifyTransactionController::class,'store'])->name('verify.payment');
 
+    route::get('ticket',[TicketController::class,'customerIndex'])->name('customer.ticket');
+    route::get('transaction',[TransactionController::class,'customerIndex'])->name('customer.transaction');
+
     route::get('check',[TicketController::class,'index'])->name('check-in');
     route::post('check',[TicketController::class,'index'])->name('check');
 

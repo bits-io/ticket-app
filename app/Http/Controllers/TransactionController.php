@@ -24,6 +24,13 @@ class TransactionController extends Controller
         return view('app.admin.transaction.index', $data);
     }
 
+    public function customerIndex()
+    {
+        $customer = Customer::where('user_id', Auth::user()->id )->first();
+        $data['data'] = Transaction::where('customer_id', $customer->id);
+        return view('app.customer.transaction.index', $data);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
