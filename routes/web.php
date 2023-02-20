@@ -21,9 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [AuthController::class,'home'])->name('home');
 
 route::get('registration',[AuthController::class,'registration'])->name('registration');
 route::post('registration',[AuthController::class,'registrationAction'])->name('registration.post');

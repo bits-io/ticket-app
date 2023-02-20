@@ -1,6 +1,9 @@
 <div class="nk-sidebar">
     <div class="nk-nav-scroll">
         <ul class="metismenu" id="menu">
+            @if (Auth::user()->role_id == 1)
+
+
             <li class="nav-label">Dashboard</li>
             <li>
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -51,6 +54,19 @@
                     <li><a href="{{ route('admin.report.transaction') }}">Transaction</a></li>
                 </ul>
             </li> --}}
+
+            @elseif (Auth::user()->role_id == 2)
+            <li class="nav-label">My</li>
+            <li>
+                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="icon-ecommerce-ticket menu-icon"></i><span class="nav-text">My Ticket</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('admin.transaction') }}">My Transaction</a></li>
+                    <li><a href="{{ route('admin.ticket') }}">My Ticket</a></li>
+                </ul>
+            </li>
+            @endif
         </ul>
     </div>
 </div>
