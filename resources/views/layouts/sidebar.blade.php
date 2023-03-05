@@ -12,6 +12,15 @@
                     <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                 </ul>
             </li>
+            <li class="nav-label">USE TICKET</li>
+            <li>
+                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="icon-ecommerce-ticket menu-icon"></i><span class="nav-text">Use Ticket</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('admin.use-ticket') }}">Use Ticket</a></li>
+                </ul>
+            </li>
             <li class="nav-label">Data Master</li>
             <li>
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -61,8 +70,16 @@
                     <i class="icon-ecommerce-ticket menu-icon"></i><span class="nav-text">My Ticket</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="{{ route('customer.transaction') }}">My Transaction</a></li>
-                    <li><a href="{{ route('customer.ticket') }}">My Ticket</a></li>
+                    <li><a href="#">My Ticket</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="icon-ecommerce-cart menu-icon"></i><span class="nav-text">My History</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('customer.transaction') }}">Transaction</a></li>
+                    <li><a href="{{ route('customer.ticket') }}">Ticket</a></li>
                 </ul>
             </li>
             @endif

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Concert;
+use App\Models\Ticket;
+use App\Models\Transaction;
 use App\Models\User;
+use App\Models\VerifyTransaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -52,7 +55,6 @@ class AuthController extends Controller
             'confirm_password' => 'required|same:password'
         ]);
 
-
         User::create([
             'name' => $request->name,
             'role_id' => 3,
@@ -69,7 +71,11 @@ class AuthController extends Controller
     }
 
     public function dashboard() {
-        return view('app.dashboard');
+        $data['transaction'] = VerifyTransaction::where('status', 'accept')->count();
+        $data['ticket'] = Ticket::all()->count();
+        $data['concert'] = Concert::all()->count();
+        $data['money'] = Transaction::where('status','success')->sum('amount');
+        return view('app.dashboard', $data);
     }
     public function home() {
         $data['concert'] = Concert::all();

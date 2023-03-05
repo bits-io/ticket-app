@@ -99,20 +99,33 @@ class VerifyTransactionController extends Controller
             VerifyTransaction::FindOrFail($id)->update([
                 'status'=>$request->status,
             ]);
+
             $ver = VerifyTransaction::where('id', $id)->first();
             $trans = Transaction::where('id', $ver->transaction_id)->first();
+            if ($request->status == 'accept') {
+                $trans->update([
+                    'status'=>'success'
+                ]);
 
-            do {
-                $random = random_int(1000000000, 9999999999);
-            } while (Ticket::where('ticket_code', $random)->exists());
+                do {
+                    $random = random_int(1000000000, 9999999999);
+                } while (Ticket::where('ticket_code', $random)->exists());
 
-            Ticket::create([
-                'ticket_code' => $random,
-                'customer_id' => $ver->customer_id,
-                'concert_id' => $trans->concert_id,
-                'transaction_id' =>$ver->transaction_id,
-                'status' => 'not_yet'
-            ]);
+
+                Ticket::create([
+                    'ticket_code' => $random,
+                    'customer_id' => $ver->customer_id,
+                    'concert_id' => $trans->concert_id,
+                    'transaction_id' =>$ver->transaction_id,
+                    'status' => 'not_yet'
+                ]);
+            }
+            if ($request->status == 'accept') {
+                $trans->update([
+                    'status'=>'failure'
+                ]);
+            }
+
 
             DB::commit();
             return redirect('admin/verify-transaction');

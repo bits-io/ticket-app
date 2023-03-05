@@ -77,6 +77,9 @@ Route::group(['prefix' => 'admin','middleware' => ['auth','check-role:1']], func
     route::post('ticket',[TicketController::class,'store'])->name('admin.ticket.create');
     route::post('ticket/{id}',[TicketController::class,'update'])->name('admin.ticket.update');
 
+    route::get('use-ticket',[TicketController::class,'useTicket'])->name('admin.use-ticket');
+    route::post('use-ticket',[TicketController::class,'searchTicket'])->name('admin.use-ticket');
+
 
 
 });

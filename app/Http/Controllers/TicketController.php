@@ -29,8 +29,25 @@ class TicketController extends Controller
     public function customerIndex()
     {
         $customer = Customer::where('user_id', Auth::user()->id )->first();
-        $data['data'] = Ticket::where('customer_id', $customer->id);
+        $data['data'] = Ticket::where('customer_id', $customer->id)->get();
         return view('app.customer.ticket.index', $data);
+    }
+
+    public function useTicket()
+    {
+        return view('app.admin.ticket.use-ticket');
+    }
+    public function searchTicket(Request $request)
+    {
+        $ticket = Ticket::where('ticket_code', $request->ticket_code)->first();
+        if ($ticket) {
+            $data['ticket'] = $ticket;
+            return view('app.admin.ticket.use-ticket', $data)->with('success','Ticket was found');
+        } else {
+            $data  = [];
+            return view('app.admin.ticket.use-ticket', $data)->with('error','Ticket not found');
+        }
+
     }
 
     /**

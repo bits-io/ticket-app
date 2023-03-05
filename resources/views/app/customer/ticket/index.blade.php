@@ -69,18 +69,18 @@
                                                     <thead>
                                                         <tr role="row">
                                                             <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 246.067px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Ticket Code</th>
-                                                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 246.067px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Full Name</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 385.917px;" aria-label="Position: activate to sort column ascending">Concert Name</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 385.917px;" aria-label="Position: activate to sort column ascending">Order Code</th>
+                                                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 246.067px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Customer ID</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 385.917px;" aria-label="Position: activate to sort column ascending">Concert ID</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 385.917px;" aria-label="Position: activate to sort column ascending">Order ID</th>
                                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 169.717px;" aria-label="Start date: activate to sort column ascending">Status</th>
                                                     </thead>
                                                     <tbody>
                                                     @foreach ($data as $d)
                                                         <tr role="row" class="odd">
                                                             <td class="sorting_1">{{ $d->ticket_code }}</td>
-                                                            <td class="sorting_1">{{ $d->full_name }}</td>
-                                                            <td class="sorting_1">{{ $d->name }}</td>
-                                                            <td class="sorting_1">{{ $d->order_code }}</td>
+                                                            <td class="sorting_1">{{ $d->customer_id }}</td>
+                                                            <td class="sorting_1">{{ $d->concert_id }}</td>
+                                                            <td class="sorting_1">{{ $d->transaction_id }}</td>
                                                             <td class="sorting_1">{{ $d->status }}</td>
                                                         </tr>
                                                     @endforeach
