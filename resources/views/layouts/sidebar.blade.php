@@ -1,9 +1,8 @@
 <div class="nk-sidebar">
     <div class="nk-nav-scroll">
         <ul class="metismenu" id="menu">
+            @if (Auth::user())
             @if (Auth::user()->role_id == 1)
-
-
             <li class="nav-label">Dashboard</li>
             <li>
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -66,6 +65,7 @@
                     <li><a href="{{ route('customer.ticket') }}">My Ticket</a></li>
                 </ul>
             </li>
+            @endif
             @endif
         </ul>
     </div>
