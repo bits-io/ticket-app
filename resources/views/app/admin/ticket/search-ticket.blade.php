@@ -59,26 +59,14 @@
                                 <h3>Checkout Tiket</h3>
                             </div>
                             <div class="card-body">
-                                <form class="mt-2 mb-2 login-input" method="POST" action="{{ route('admin.use-ticket') }}">
+                                <form class="mt-2 mb-2 login-input" method="POST" action="{{ route('admin.search-ticket') }}">
                                     @csrf
                                     <div class="form-group">
                                         <label for="">Ticket Code</label>
-                                        <input type="number" class="form-control" value="{{$ticket->ticket_code}}"  placeholder="Enter Ticket Code" name="ticket_code" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Customer ID</label>
-                                        <input type="number" class="form-control" value="{{$ticket->customer_id}}"  placeholder="Enter Customer ID">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Concert ID</label>
-                                        <input type="number" class="form-control" value="{{$ticket->concert_id}}"  placeholder="Enter Concert ID">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Status</label>
-                                        <input type="text" class="form-control" value="{{$ticket->status}}"  placeholder="Enter Ticket Code">
+                                        <input type="number" class="form-control"  placeholder="Enter Ticket Code" name="ticket_code" required>
                                     </div>
                                     <div class="form-group justify-content-end">
-                                        <button type="submit" class="btn btn-primary">Gunakan</button>
+                                        <button type="submit" class="btn btn-primary">Cari</button>
                                     </div>
                                 </form>
                             </div>

@@ -77,10 +77,11 @@ Route::group(['prefix' => 'admin','middleware' => ['auth','check-role:1']], func
     route::post('ticket',[TicketController::class,'store'])->name('admin.ticket.create');
     route::post('ticket/{id}',[TicketController::class,'update'])->name('admin.ticket.update');
 
+    route::get('search-ticket',[TicketController::class,'searchTicket'])->name('admin.search-ticket');
+    route::post('search-ticket',[TicketController::class,'searchTicketPost'])->name('admin.search-ticket');
+
     route::get('use-ticket',[TicketController::class,'useTicket'])->name('admin.use-ticket');
-    route::post('use-ticket',[TicketController::class,'searchTicket'])->name('admin.use-ticket');
-
-
+    route::post('use-ticket',[TicketController::class,'useTicketPost'])->name('admin.use-ticket');
 
 });
 

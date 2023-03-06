@@ -15,10 +15,10 @@
             <li class="nav-label">USE TICKET</li>
             <li>
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                    <i class="icon-ecommerce-ticket menu-icon"></i><span class="nav-text">Use Ticket</span>
+                    <i class="icon-ecommerce-ticket menu-icon"></i><span class="nav-text">Search Ticket</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="{{ route('admin.use-ticket') }}">Use Ticket</a></li>
+                    <li><a href="{{ route('admin.search-ticket') }}">Search Ticket</a></li>
                 </ul>
             </li>
             <li class="nav-label">Data Master</li>
